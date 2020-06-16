@@ -6,48 +6,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Livros de Java, Androis, Iphone, Ruby, PHP e muito mais - CasaDoCodigo</title>
+	<meta charset="UTF-8">
+	<title>Livros de Java, Androis, Iphone, Ruby, PHP e muito mais - CasaDoCodigo</title>
+	
+	<c:url value="/resources/css" var="cssPath" />
+	<link rel="stylesheet" href="${cssPath}/bootstrap.min.css" />
+	<link rel="stylesheet" href="${cssPath}/bootstrap-theme.min.css" />
+	
+	 <style type="text/css">
+        body .conteudo{
+            padding-top: 60px;
+        }
+    </style>
+    
 </head>
 <body>
 
-	<form:form action="${s:mvcUrl('salvar').build()}" method="post" 
-	commandName="produto" enctype="multipart/form-data">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="${s:mvcUrl('HC#index').build()}">Casa do Código</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 		
-		<div>
-			<label for="titulo">Titulo</label>
-			<form:input placeholder="Titulo" path="titulo"/>
-			<form:errors path="titulo"/>
+		<div class="collapse navbar-collapse" id="navbarSite">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="${s:mvcUrl('PC#listar').build()}">Lista de Produtos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="${s:mvcUrl('PC#form').build()}">Cadastro de Produtos</a>
+				</li>
+			</ul>
 		</div>
-		<div>
-			<label for="descricao">Descrição</label>
-			<form:textarea path="descricao" rows="10" cols="20" />
-			<form:errors path="descricao"/>
-		</div>
-		<div>
-			<label for="paginas">Páginas</label>
-			<form:input path="paginas"/>
-			<form:errors path="paginas"/>
-		</div>
-		<div>
-			<label for="dataLancamento">Data de Lançamento</label>
-			<form:input path="dataLancamento"/>
-			<form:errors path="dataLancamento" />
-		</div>
-		<c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
-		    <div>
-		        <label>${tipoPreco}</label> 
-            	<form:input path="precos[${status.index}].valor" /> 
-            	<form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}" />
-		    </div>
-		</c:forEach>
-		<div>
-			<label>Sumario</label>
-			<input name="sumario" type="file">
-		</div>
+	</nav>
+
+
+	<div class="container conteudo">
 		
-		<input type="submit" value="Cadastrar" id="button-1"/>
-	</form:form>
+		<h3>Cadastro de Produto</h3>
+		
+		
+		
+		
+		<form:form action="${s:mvcUrl('salvar').build()}" method="post" 
+		commandName="produto" enctype="multipart/form-data">
+		
+			<div class="form-group">
+			
+				<div>
+					<label for="titulo">Titulo</label>
+					<form:input placeholder="Titulo" path="titulo" class="form-control form-control"/>
+					<form:errors path="titulo"/>
+				</div>
+				<div>
+					<label for="descricao">Descrição</label>
+					<form:textarea path="descricao" rows="10" cols="20" class="form-control"/>
+					<form:errors path="descricao"/>
+				</div>
+				<div>
+					<label for="paginas">Páginas</label>
+					<form:input path="paginas" class="form-control form-control"/>
+					<form:errors path="paginas"/>
+				</div>
+				<div>
+					<label for="dataLancamento">Data de Lançamento</label>
+					<form:input path="dataLancamento" class="form-control form-control"/>
+					<form:errors path="dataLancamento" />
+				</div>
+				<c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
+				    <div>
+				        <label>${tipoPreco}</label> 
+		            	<form:input path="precos[${status.index}].valor" class="form-control form-control"/> 
+		            	<form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}" />
+				    </div>
+				</c:forEach>
+				
+				<div class="custom-file">
+					<label>Sumario</label>
+					<input name="sumario" type="file"  class="custom-file-label">
+				</div>
+				
+				<button class="btn btn-primary" value="Cadastrar" id="button-1" type="submit">Enviar</button>
+				
+			</div>
+		</form:form>
+	</div>
 
 </body>
 </html>

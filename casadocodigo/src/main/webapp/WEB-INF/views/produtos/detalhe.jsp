@@ -33,7 +33,7 @@
 
 	<header id="layout-header">
 		<div class="clearfix container">
-			<a href="/" id="logo"> </a>
+			<a href="${s:mvcUrl('HC#index').build()}" id="logo"> </a>
 			<div id="header-content">
 				<nav id="main-nav">
 
@@ -48,7 +48,7 @@
 	</header>
 	<nav class="categories-nav">
 		<ul class="container">
-			<li class="category"><a href="http://www.casadocodigo.com.br">Home</a></li>
+			<li class="category"><a href="${s:mvcUrl('HC#index').build()}">Home</a></li>
 			<li class="category"><a href="/collections/livros-de-agile"> Agile </a></li>
 			<li class="category"><a href="/collections/livros-de-front-end"> Front End </a></li>
 			<li class="category"><a href="/collections/livros-de-games"> Games </a></li>
@@ -73,8 +73,10 @@
 			</div>
 		</header>
 
+		<c:url value="/" var="contextPath" />
+
 		<section class="buy-options clearfix">
-			<form action='<c:url value="/carrinho/add" />' method="post" class="container">
+			<form:form action='${contextPath }carrinho/add' method="post" cssClass="container">
 				<input type="hidden" value="${produto.id}" name="produtoId" >
 				<ul id="variants" class="clearfix">
 				<c:forEach items="${produto.precos}" var="preco"> 
@@ -87,7 +89,7 @@
 				</c:forEach>
 				</ul>
 				<button type="submit" class="submit-image icon-basket-alt" title="Compre Agora ${produto.titulo}"></button>
-			</form>
+			</form:form>
 		</section>
 
 		<div class="container">
