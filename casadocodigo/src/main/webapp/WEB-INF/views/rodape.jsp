@@ -54,5 +54,4 @@
 				</ul>
 			</div>
 		</div>
-		<h2>teste git</h2>
 	</footer>
