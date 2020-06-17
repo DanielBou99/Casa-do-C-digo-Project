@@ -24,23 +24,24 @@ public class PagamentoController {
 	@Autowired	
 	private RestTemplate restTemplate;
 	
-	@RequestMapping(value = "/finalizar", method = RequestMethod.POST)
+	@RequestMapping(value="/finalizar", method = RequestMethod.POST)
 	public Callable<ModelAndView> finalizar(RedirectAttributes model) { /* Calleble faz com que seja assincrono (liberar os outros usuarios) */
+		System.out.println("Entrou no FinalizarPagamento");
 		return() -> {
 			System.out.println(carrinho.getTotal());
-			
+
 			try {
 				String uri = "http://book-payment.herokuapp.com/payment";
 				
 				String response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
 				System.out.println(response);
 				model.addFlashAttribute("sucesso", response);
-				return new ModelAndView("redirect:/produtos");
+				return new ModelAndView("redirect:/");
 			} catch (HttpClientErrorException e) {
 				e.printStackTrace();
 				System.out.println();
 				model.addFlashAttribute("falha", "Valor maior que o permitido");
-				return new ModelAndView("redirect:/produtos");
+				return new ModelAndView("redirect:/");
 			}
 		};
 	}

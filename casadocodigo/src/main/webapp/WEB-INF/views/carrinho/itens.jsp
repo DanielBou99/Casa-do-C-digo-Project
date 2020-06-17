@@ -69,10 +69,7 @@
 							<td class="numeric-cell">${carrinhoCompras.getTotal(item)}</td>
 							<td class="remove-item">
 							
-								<form:form action="/casadocodigo/carrinho/remover" method="POST">
-									<c:set var="produtoId" value="${item.produto.id}" />
-									<input type="hidden" name="idProduto" value="${item.produto.id}"/>
-									<input type="hidden" name="tipoPreco" value="${item.tipoPreco}" />
+								<form:form action="/casadocodigo/carrinho/remover?produtoId=${item.produto.id}&tipoPreco=${item.tipoPreco}" method="POST">
 									<input type="image" src="${contextPath }/resources/imagens/excluir.png" 
 										alt="Excluir" title="Excluir" />
 								</form:form>
@@ -84,9 +81,9 @@
 				<tfoot>
 					<tr>
 						<td colspan="3">
-						<form action="${s:mvcUrl('PC#finalizar').build()}" method="post">
+						<form:form action="/casadocodigo/pagamento/finalizar" method="post">
 							<input type="submit" class="checkout" name="checkout" value="Finalizar compra" />
-						</form>
+						</form:form>
 						
 						</td>
 					
