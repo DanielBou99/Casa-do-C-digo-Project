@@ -31,7 +31,14 @@
 <link rel="canonical" href="http://www.casadocodigo.com.br/" />
 </head>
 
-	<tags:pageTemplate titulo="Carrinho - Casa do Código ">
+<tags:pageTemplate titulo="Carrinho - Casa do Código ">
+
+
+	<jsp:attribute name="extraScripts">
+		<script> console.log("Finalização de compra de ${carrinhoCompras.quantidade} itens"); </script>
+	</jsp:attribute>
+
+	<jsp:body>
 	
 		<section class="container middle">
 			<h2 id="cart-title">Seu carrinho de compras</h2>
@@ -108,7 +115,7 @@
 			</h2>
 		</section>
 		
-		
-	</tags:pageTemplate>
+	</jsp:body>		
+</tags:pageTemplate>
 
 </html>
