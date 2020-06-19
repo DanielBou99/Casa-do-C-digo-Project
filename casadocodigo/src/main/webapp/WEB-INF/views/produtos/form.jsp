@@ -49,8 +49,7 @@
 		
 		
 		<form:form action="${s:mvcUrl('salvar').build()}" method="post" 
-		commandName="produto" enctype="multipart/form-data">
-		
+		commandName="produto" enctype="multipart/form-data" acceptCharset="utf-8">
 			<div class="form-group">
 			
 				<div>
@@ -60,7 +59,7 @@
 				</div>
 				<div>
 					<label for="descricao">Descrição</label>
-					<form:textarea path="descricao" rows="10" cols="20" class="form-control"/>
+					<form:textarea path="descricao" rows="10" cols="20" class="form-control" maxlength="998"/>
 					<form:errors path="descricao"/>
 				</div>
 				<div>

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,10 @@ public class Produto {
 	private int id;
 	
 	private String titulo;
+	
+	@Column(columnDefinition = "VARCHAR(5000)") 
 	private String descricao;
+	
 	private int paginas;
 	private Calendar dataLancamento;
 	

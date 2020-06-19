@@ -57,12 +57,14 @@ public class ProdutosController {
 	public ModelAndView gravar(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes, MultipartFile sumario) { 
 		
 		System.out.println(sumario.getOriginalFilename());
+		System.out.println(produto.getDescricao());
 		
 		if (result.hasErrors()) {
 			return form(produto);
 		}
 		
 		String path = fileSaver.write("arquivos-sumario", sumario);
+		System.out.println(path);
 		produto.setSumarioPath(path);
 		
 		produtoDao.gravar(produto);
@@ -70,10 +72,10 @@ public class ProdutosController {
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
 		/*utilizando o redirectAttributes, o parametro sucesso  consegue sobreviver no redirect*/
 		
-		return new ModelAndView("redirect:produtos"); /*Redirect para o navegador não gravar os parametros*/
+		return new ModelAndView("redirect:/produtos/listar"); /*Redirect para o navegador não gravar os parametros*/
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/listar", method = RequestMethod.GET)
 	public ModelAndView listar() {
 		List<Produto> produtos = produtoDao.listar();
 		ModelAndView modelAndView = new ModelAndView("produtos/lista");
@@ -89,6 +91,13 @@ public class ProdutosController {
 		modelAndView.addObject("produto", produto);
 		
 		return modelAndView; 
+	}
+	
+	@RequestMapping(value="/remover",method=RequestMethod.POST)
+	public ModelAndView remover(Integer produtoId) {
+		produtoDao.remover(produtoId);
+		
+		return new ModelAndView("redirect:/produtos/listar");
 	}
 	
 }

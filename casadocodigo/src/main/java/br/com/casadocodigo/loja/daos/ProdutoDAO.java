@@ -32,4 +32,13 @@ public class ProdutoDAO {
 				.getSingleResult();
 	}
 
+	public void remover(Integer produtoId) {
+		
+		Produto produto = null;
+		
+		produto = manager.find(Produto.class, produtoId);
+		manager.remove(produto);
+		System.out.println("Produto removido.");
+	}
+
 }

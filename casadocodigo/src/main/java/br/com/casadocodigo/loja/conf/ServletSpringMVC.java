@@ -31,6 +31,7 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	@Override
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+		encodingFilter.setForceEncoding(true);
 		encodingFilter.setEncoding("UTF-8");
 		
 		return new Filter[] {encodingFilter};
@@ -40,4 +41,7 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	protected void customizeRegistration(Dynamic registration) {/* Metodo para o arquivo ser enviado ao servidor*/
 		registration.setMultipartConfig(new MultipartConfigElement(""));
 	}
+	
+	
+	
 }
