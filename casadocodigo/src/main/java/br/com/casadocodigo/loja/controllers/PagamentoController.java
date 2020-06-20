@@ -32,9 +32,9 @@ public class PagamentoController {
 
 			try {
 				String uri = "http://book-payment.herokuapp.com/payment";
-				
 				String response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
 				System.out.println(response);
+				
 				model.addFlashAttribute("sucesso", response);
 				return new ModelAndView("redirect:/");
 			} catch (HttpClientErrorException e) {
@@ -45,4 +45,5 @@ public class PagamentoController {
 			}
 		};
 	}
+
 }
